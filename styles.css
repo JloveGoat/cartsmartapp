@@ -1,0 +1,227 @@
+
+
+#cartsmart-subtitle {
+    font-size: 24px;
+    color: #1a9a04;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+}
+
+#add-list-button, #past-lists-button {
+    display: block;
+    margin: 20px auto; /* Center the buttons */
+    padding: 10px 20px; /* Add padding */
+    background-color: #28a745; /* Button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.2); /* Shadow effect */
+    transition: all 0.3s ease; /* Smooth transition */
+    width: 219px; /* Same width as other buttons */
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+    animation-delay: 0.3s; /* Slight delay for buttons */
+}
+
+#add-list-button:hover, #past-lists-button:hover {
+    background-color: #147803; /* Darker green on hover */
+}
+
+#app-benefits {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#app-benefits h2 {
+    text-align: center;
+    color: #1a9a04;
+    margin-bottom: 40px;
+}
+
+/* Common styles for all benefits */
+#app-benefits > div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Animation classes */
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+#app-benefits h3 {
+    color: #1a9a04;
+    font-size: 24px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#app-benefits h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #1a9a04;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+#app-benefits > div:hover h3::after {
+    width: 50%;
+}
+
+#app-benefits p {
+    border: 2px solid #1a9a04;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, transparent 0%, rgba(26, 154, 4, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#app-benefits p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(26, 154, 4, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#app-benefits > div:hover p::before {
+    left: 100%;
+}
+
+/* First benefit - Title right, description left */
+#benefit-1 {
+    direction: rtl;
+}
+
+#benefit-1 h3, #benefit-1 p {
+    direction: ltr;
+}
+
+/* Second benefit - Title left, description right */
+#benefit-2 {
+    direction: ltr;
+}
+
+/* Third benefit - Title right, description left */
+#benefit-3 {
+    direction: rtl;
+}
+
+#benefit-3 h3, #benefit-3 p {
+    direction: ltr;
+}
+
+/* Fourth benefit - Title left, description right */
+#benefit-4 {
+    direction: ltr;
+}
+
+/* Hover effects */
+#app-benefits > div:hover p {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(26, 154, 4, 0.2);
+}
+
+#app-benefits > div:hover h3 {
+    transform: scale(1.1);
+    text-shadow: 2px 2px 4px rgba(26, 154, 4, 0.2);
+}
+
+/* Animation Keyframes */
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #app-benefits > div {
+        grid-template-columns: 100%;
+        gap: 15px;
+        padding: 10px;
+        direction: ltr;
+    }
+
+    #app-benefits h3 {
+        text-align: center;
+    }
+
+    #app-benefits p {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+#cartsmart-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1a9a04;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+}
+
+/* Initial page load animation */
+@keyframes fadeInPage {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
