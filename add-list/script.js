@@ -210,33 +210,25 @@ function milesToMeters(miles) {
 
 // Function to format item name for display and matching
 function formatItemName(name) {
-    // Convert to lowercase and trim spaces
-    name = name.toLowerCase().trim();
-    
-    // Convert spaces to camelCase
-    // e.g., "organic chopped kale" -> "organicChoppedKale"
-    return name.replace(/\s+(.)/g, (match, letter) => letter.toUpperCase());
+    // Convert to lowercase and trim spaces only
+    return name.toLowerCase().trim();
 }
 
 // Function to format item for display
-function formatItemForDisplay(camelCaseName) {
-    // Convert camelCase back to spaced words
-    // e.g., "organicChoppedKale" -> "Organic Chopped Kale"
-    return camelCaseName
-        .replace(/([A-Z])/g, ' $1') // Add space before capital letters
-        .replace(/^./, str => str.toUpperCase()) // Capitalize first letter
-        .trim(); // Remove any extra spaces
+function formatItemForDisplay(name) {
+    // Keep it lowercase to match store data
+    return name.toLowerCase().trim();
 }
 
 // Function to add item to grocery list
 function addGroceryItem() {
     const itemInput = groceryItemInput.value.trim();
-    if (itemInput) {
-        const camelCaseName = formatItemName(itemInput);
-        userGroceryList.add(camelCaseName);
-        updateGroceryListDisplay();
-        groceryItemInput.value = ''; // Clear input
-    }
+    if (!itemInput) return;
+
+    const camelCaseName = formatItemName(itemInput);
+    userGroceryList.add(camelCaseName);
+    updateGroceryListDisplay();
+    groceryItemInput.value = ''; // Clear input
 }
 
 // Function to remove item from grocery list
@@ -275,19 +267,24 @@ function calculateTotalCost(storePrices) {
     // If user has a grocery list, only calculate costs for those items
     if (userGroceryList.size > 0) {
         userGroceryList.forEach(item => {
-            if (storePrices[item] !== undefined) {
-                costs[item] = storePrices[item];
-                total += storePrices[item];
-            } else {
+            // Convert item name to lowercase for case-insensitive comparison
+            const itemLower = item.toLowerCase();
+            let found = false;
+            
+            // Look for the item in store prices (case-insensitive)
+            for (const [storeItem, price] of Object.entries(storePrices)) {
+                if (storeItem.toLowerCase() === itemLower) {
+                    costs[item] = price;
+                    total += price;
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
                 costs[item] = null; // Item not available at this store
             }
         });
-    } else {
-        // If no grocery list, include all items
-        for (const [item, price] of Object.entries(storePrices)) {
-            costs[item] = price;
-            total += price;
-        }
     }
     
     costs.total = total;
@@ -364,27 +361,55 @@ function adjustDistance(actualDistance) {
 
 // Function to find cheapest store within radius
 function findCheapestStore(maxDistance, maxStores) {
+    if (!userLocation) {
+        console.log('No user location available');
+        return null;
+    }
+
     // First, get ALL stores within the specified radius, using adjusted distances
     const storesInRange = testStores.filter(store => {
         const adjustedDistance = adjustDistance(store.distance);
+        console.log(`Store ${store.name}: actual distance = ${store.distance}, adjusted = ${adjustedDistance}, max = ${maxDistance}`);
         return adjustedDistance <= maxDistance;
     });
     
+    console.log('Stores in range:', storesInRange);
+    
     if (storesInRange.length === 0) {
+        console.log('No stores found in range');
         return null;
     }
 
     // Sort stores by total cost to find the best options
-    const sortedStores = storesInRange.map(store => ({
-        name: store.name,
-        distance: store.distance,
-        adjustedDistance: adjustDistance(store.distance),
-        costs: calculateTotalCost(store.prices),
-        prices: store.prices
-    })).sort((a, b) => a.costs.total - b.costs.total);
+    const sortedStores = storesInRange
+        .map(store => {
+            const costs = calculateTotalCost(store.prices);
+            console.log(`Calculated costs for ${store.name}:`, costs);
+            return {
+                name: store.name,
+                distance: store.distance,
+                adjustedDistance: adjustDistance(store.distance),
+                costs: costs,
+                prices: store.prices
+            };
+        })
+        .filter(store => store.costs.total > 0) // Only include stores that have at least one matching item
+        .sort((a, b) => a.costs.total - b.costs.total);
 
     // Take only the number of stores specified
     const selectedStores = sortedStores.slice(0, maxStores);
+
+    if (selectedStores.length === 0) {
+        return {
+            singleStoreCosts: [],
+            optimalShopping: {
+                total: 0,
+                shoppingPlan: {},
+                bestPrices: {}
+            },
+            storesChecked: storesInRange.length
+        };
+    }
 
     // Calculate optimal shopping plan using only selected stores
     const optimalShopping = calculateOptimalCost(selectedStores.map(store => ({
@@ -405,8 +430,12 @@ async function searchNearbyStores() {
     const radius = parseInt(radiusInput.value) || 5;
     const maxStores = parseInt(storeSelect.value) || 5;
 
+    console.log('Current grocery list:', Array.from(userGroceryList));
+    console.log('Searching with radius:', radius, 'and maxStores:', maxStores);
+
     // Use test data with updated distances
     const results = findCheapestStore(radius, maxStores);
+    console.log('Search results:', results);
     
     if (results) {
         displayTestResults(results, radius);
@@ -418,30 +447,44 @@ async function searchNearbyStores() {
 
 // Update display function to highlight missing items
 function displayTestResults(results, searchRadius) {
+    console.log('Displaying results:', results);
+    console.log('Results container:', resultsContainer);
+    
+    if (!results || !results.optimalShopping || !results.singleStoreCosts) {
+        resultsContainer.innerHTML = 'No valid results to display.';
+        resultsContainer.style.display = 'block';
+        return;
+    }
+
     resultsContainer.innerHTML = '';
     resultsContainer.style.display = 'block';
 
     // Display optimal shopping plan
     const optimalElement = document.createElement('div');
     optimalElement.className = 'summary optimal-plan';
+    
+    // Safely handle undefined total
+    const totalCost = results.optimalShopping.total || 0;
+    
     optimalElement.innerHTML = `
-        <h2>Optimal Shopping Plan (${results.storesChecked} stores within ${searchRadius} miles)</h2>
-        <h3>Total Cost: $${results.optimalShopping.total.toFixed(2)}</h3>
+        <h2>Optimal Shopping Plan (${results.storesChecked || 0} stores within ${searchRadius} miles)</h2>
+        <h3>Total Cost: $${totalCost.toFixed(2)}</h3>
         <div class="shopping-plan">
-            ${Object.entries(results.optimalShopping.shoppingPlan).map(([store, plan]) => `
+            ${Object.entries(results.optimalShopping.shoppingPlan || {}).map(([store, plan]) => `
                 <div class="store-plan">
-                    <h4>${store} (${plan.distance.toFixed(1)} miles)</h4>
+                    <h4>${store} (${(plan.distance || 0).toFixed(1)} miles)</h4>
                     <ul>
-                        ${plan.items.map(item => `
-                            <li>${item.name}: $${item.price.toFixed(2)}</li>
+                        ${(plan.items || []).map(item => `
+                            <li>${item.name}: $${(item.price || 0).toFixed(2)}</li>
                         `).join('')}
                     </ul>
-                    <p>Store subtotal: $${plan.totalCost.toFixed(2)}</p>
+                    <p>Store subtotal: $${(plan.totalCost || 0).toFixed(2)}</p>
                 </div>
             `).join('')}
         </div>
     `;
     resultsContainer.appendChild(optimalElement);
+    console.log('Added optimal plan element');
 
     // Display single-store comparison table
     const tableElement = document.createElement('div');
@@ -451,8 +494,10 @@ function displayTestResults(results, searchRadius) {
     const itemsToDisplay = userGroceryList.size > 0 ? 
         Array.from(userGroceryList) : 
         Array.from(new Set(results.singleStoreCosts.flatMap(store => 
-            Object.keys(store.costs).filter(item => item !== 'total')
+            Object.keys(store.costs || {}).filter(item => item !== 'total')
         )));
+
+    console.log('Items to display:', itemsToDisplay);
 
     tableElement.innerHTML = `
         <h3>Single Store Options:</h3>
@@ -468,18 +513,19 @@ function displayTestResults(results, searchRadius) {
             ${results.singleStoreCosts.map(store => `
                 <tr>
                     <td>${store.name}</td>
-                    <td>${store.distance.toFixed(1)} mi</td>
+                    <td>${(store.distance || 0).toFixed(1)} mi</td>
                     ${itemsToDisplay.map(item => {
-                        const price = store.costs[item];
+                        const price = store.costs ? store.costs[item] : null;
                         const cellClass = price === null ? 'missing-item' : '';
                         return `<td class="${cellClass}">${price !== null ? '$' + price.toFixed(2) : 'N/A'}</td>`;
                     }).join('')}
-                    <td>$${store.costs.total.toFixed(2)}</td>
+                    <td>$${(store.costs?.total || 0).toFixed(2)}</td>
                 </tr>
             `).join('')}
         </table>
     `;
     resultsContainer.appendChild(tableElement);
+    console.log('Added table element');
 }
 
 // Add event listener to search button

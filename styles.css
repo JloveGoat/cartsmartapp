@@ -1,23 +1,52 @@
-
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('C:/Users/srika/Downloads/green2-bg.jpg');
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Oxygen', sans-serif;
+}
 
 #cartsmart-subtitle {
     font-size: 24px;
-    color: #1a9a04;
+    color: #000000;
     text-align: center;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
 }
 
-#add-list-button, #past-lists-button {
+#add-list-button {
     display: block;
-    margin: 20px auto; /* Center the buttons */
+    margin: 35px auto; /* Center the buttons */
     padding: 10px 20px; /* Add padding */
     background-color: #28a745; /* Button color */
     color: white; /* Text color */
     border: none; /* No border */
     border-radius: 4px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.2); /* Shadow effect */
+    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    transition: all 0.3s ease; /* Smooth transition */
+    width: 219px; /* Same width as other buttons */
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+    animation-delay: 0.3s; /* Slight delay for buttons */
+}
+
+#past-lists-button {
+    display: block;
+    margin: 35px auto; /* Center the buttons */
+    padding: 10px 20px; /* Add padding */
+    background-color: #28a745; /* Button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
     transition: all 0.3s ease; /* Smooth transition */
     width: 219px; /* Same width as other buttons */
     opacity: 0;
@@ -207,7 +236,7 @@
 #cartsmart-title {
     font-size: 48px;
     font-weight: bold;
-    color: #1a9a04;
+    color: #000000;
     text-align: center;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
@@ -224,4 +253,3 @@
         transform: translateY(0);
     }
 }
-
