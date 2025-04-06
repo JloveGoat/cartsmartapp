@@ -140,16 +140,58 @@ input[type="number"] {
 
 #results-container {
     margin-top: 20px;
-    width: 80%;
+    width: 90%;
     max-width: 800px;
-    max-height: 400px;
-    overflow-y: auto;
     background: white;
     border: 2px solid #333;
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.682);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     display: none;
+    transition: all 0.3s ease;
+    margin-top: 300px;
+}
+
+.input-container {
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#new-list-button {
+    display: none;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #1a9a04, #28a745);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0 4px 15px rgba(40, 176, 69, 0.3);
+    transition: all 0.3s ease;
+
+}
+
+#new-list-button:hover {
+    background: linear-gradient(145deg, #28a745, #1a9a04);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(40, 167 69 .3);
 }
 
 .summary {
@@ -235,8 +277,10 @@ input[type="number"] {
     position: relative;
     width: 100%;
     max-width: 219px;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
 }
 
 #location-button {
@@ -253,6 +297,8 @@ input[type="number"] {
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.5s;
+    display: block;
+    margin: 0 auto;
 }
 
 #location-button:hover {
@@ -368,15 +414,34 @@ input[type="number"] {
     border-radius: 25px;
     margin: 20px auto; /* Center the buttons */
     padding: 10px 20px; /* Add padding */
-    background-color: #28a745; /* Button color */
+    background: linear-gradient(to bottom, #28a745, #1a9a04); /* Gradient for glossy effect */
     color: white; /* Text color */
     box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    position: absolute;
     transition: all 0.3s ease; /* Smooth transition */
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.3s; /* Slight delay for buttons */
     margin-top: 0;
     margin-bottom: 0;
+}
+
+#back-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+}
+
+#back-button:hover::after {
+    opacity: 1;
 }
 
 #back-button:hover {

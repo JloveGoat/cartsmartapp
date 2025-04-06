@@ -449,7 +449,35 @@ async function searchNearbyStores() {
     console.log('Search results:', results);
     
     if (results) {
+         // Hide input container
+         document.querySelector('.input-container').classList.add('hidden');
+        
+         // Show results
         displayTestResults(results, radius);
+        resultsContainer.style.display = 'block';
+        
+        // Show new list button
+        const newListButton = document.getElementById('new-list-button');
+        newListButton.style.display = 'block';
+        
+        // Add event listener to new list button
+        newListButton.onclick = () => {
+            // Clear the grocery list
+            userGroceryList.clear();
+            updateGroceryListDisplay();
+            
+            // Reset inputs
+            radiusInput.value = '';
+            storeSelect.selectedIndex = 0;
+            groceryItemInput.value = '';
+            
+            // Hide results and new list button
+            resultsContainer.style.display = 'none';
+            newListButton.style.display = 'none';
+            
+            // Show input container
+            document.querySelector('.input-container').classList.remove('hidden');
+        };
     } else {
         resultsContainer.innerHTML = 'No stores found within the specified radius.';
         resultsContainer.style.display = 'block';
