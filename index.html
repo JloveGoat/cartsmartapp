@@ -5,38 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CartSmart Homepage</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
     <header>
-        <h1 id="cartsmart-title">CartSmart</h1>
+        <h1 id="cartsmart-title">CartSmart <i class="fa-solid fa-circle-info" id="info-icon"></i></h1>
     </header>
     <main>
         <p id="cartsmart-subtitle">Your one-stop shop for all your grocery needs!</p>
         <button onclick="window.location.href='add-list/index.html'" id="add-list-button">Create New Grocery List</button>
-        <button onclick="window.location.href='past-list/index.html'" id="past-lists-button">Past Lists</button>
-        
-        <section id="app-benefits">
-            <h2>Why CartSmart?</h2>
-            <div id="benefit-1">
-                <h3>Convenience</h3>
-                <p>Easily create and manage your grocery lists from anywhere.</p>
-            </div>
-
-            <div id="benefit-2">
-                <h3>Time-Saving</h3>
-                <p>Quickly find stores and items, reducing your shopping time.</p>
-            </div>
-
-            <div id="benefit-3">
-                <h3>Organization</h3>
-                <p>Keep track of past grocery lists for better planning.</p>
-            </div>
-
-            <div id="benefit-4">
-                <h3>Personalization</h3>
-                <p>Customize your shopping experience based on your preferences.</p>
-            </div>
-        </section>
+        <button onclick="window.location.href='past-list/index.html'" id="past-lists-button">View Past Lists</button>
+        <button onclick="window.location.href='benefits/index.html'" id="benefits-button">Why CartSmart?</button>
     </main>
     <script src="animations.js"></script>
 </body>

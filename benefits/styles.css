@@ -1,0 +1,253 @@
+body {
+    background-image: url('C:/Users/srika/Downloads/green2-bg.jpg');
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+#back-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #1a9a04;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Oxygen', sans-serif;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    box-shadow: 0px 10px 9px -1px rgb(13, 106, 3);
+
+}
+
+#back-button:hover {
+    background-color: #147803;
+    transform: scale(1.05);
+}
+
+#app-benefits {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+#app-benefits h2 {
+    text-align: center;
+    color: #1a9a04;
+    margin-bottom: 40px;
+    font-size: 40px;
+    animation: fadeInPage 1s ease-out forwards;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bounce-animation {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Common styles for all benefits */
+.benefit-item {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.5s ease-out forwards;
+    visibility: hidden; /* Start hidden for intersection observer */
+}
+
+.benefit-item.visible {
+    visibility: visible;
+}
+
+/* Stagger the animations for each benefit */
+#benefit-1 { animation-delay: 0.2s; }
+#benefit-2 { animation-delay: 0.4s; }
+#benefit-3 { animation-delay: 0.6s; }
+#benefit-4 { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#app-benefits h3 {
+    color: #1a9a04;
+    font-size: 30px;
+    margin: 0;
+    width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+#app-benefits h3 i {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #1a9a04;
+    transition: transform 0.3s ease;
+}
+
+#app-benefits h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1a9a04;
+    transition: all 0.3s ease;
+}
+
+#app-benefits > div:hover h3::after {
+    width: 100%;
+}
+
+#app-benefits > div:hover h3 i {
+    transform: rotate(20deg);
+}
+
+#app-benefits p {
+    border: none;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 13px 7px -5px rgb(26, 193, 9);
+
+}
+
+#app-benefits p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(26, 154, 4, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+#app-benefits > div:hover p::before {
+    left: 100%;
+}
+
+
+/* Hover effects */
+#app-benefits > div:hover p {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(26, 154, 4, 0.2);
+}
+
+#app-benefits > div:hover h3 {
+    transform: scale(1.1);
+    text-shadow: 2px 2px 4px rgba(26, 154, 4, 0.2);
+}
+
+#benefits-title {
+    font-size: 48px;
+    background: linear-gradient(to right, lightgreen, darkgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+    margin-top: 55px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+/* Initial page load animation */
+@keyframes fadeInPage {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .benefit-item {
+        grid-template-columns: 100%;
+        gap: 15px;
+        padding: 10px;
+        direction: ltr !important;
+    }
+
+    #app-benefits h3 {
+        text-align: center;
+    }
+
+    #app-benefits p {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    #back-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    margin: 20px auto; /* Center the buttons */
+    padding: 10px 20px; /* Add padding */
+    background-color: #28a745; /* Button color */
+    color: white; /* Text color */
+    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    transition: all 0.3s ease; /* Smooth transition */
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+    animation-delay: 0.3s; /* Slight delay for buttons */
+    margin-top: 0;
+    margin-bottom: 0;
+    }
+}

@@ -220,10 +220,21 @@ function formatItemForDisplay(name) {
     return name.toLowerCase().trim();
 }
 
+// Function to add bounce animation
+function addBounceEffect(element) {
+    element.classList.add('bounce');
+    // Remove the class after the animation completes
+    setTimeout(() => {
+        element.classList.remove('bounce');
+    }, 300); // Match this with the animation duration in CSS
+}
+
 // Function to add item to grocery list
 function addGroceryItem() {
     const itemInput = groceryItemInput.value.trim();
     if (!itemInput) return;
+
+    addBounceEffect(addItemButton);
 
     const camelCaseName = formatItemName(itemInput);
     userGroceryList.add(camelCaseName);

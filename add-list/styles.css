@@ -10,6 +10,26 @@
     }
 }
 
+/* Universal styles */
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#cartsmart-title {
+    position: absolute;
+    top: 55px;
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(to right, lightgreen, darkgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+}
+
 h1 {
     text-align: center;
     margin-top: 20px;
@@ -21,8 +41,8 @@ h1 {
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
 }
+
 body {
-    font-family: Arial, sans-serif;
     background-image: url('C:/Users/srika/Downloads/green2-bg.jpg');
     color: #333;
     margin: 0;
@@ -38,25 +58,22 @@ body {
     background-repeat: no-repeat;
 }
 
-
-
 input {
     padding: 10px;
     font-size: 16px;
     margin-top: 20px;
     box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.682);
-    font-family: 'Oxygen', sans-serif;
     width: 195px;
     border: 2px solid #333;
     background: white;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.2s;
+    height: 35px;
 }
 
 input::placeholder {
     color: #666;
-    font-family: 'Oxygen', sans-serif;
 }
 
 /* Style the number input arrows */
@@ -80,9 +97,7 @@ input[type="number"] {
     height: 40px;
     padding: 10px;
     font-size: 16px;
-    margin-top: 20px;
-    box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.682);
-    font-family: 'Oxygen', sans-serif;
+    margin-top: 30px;
     appearance: none;
     background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center;
     cursor: pointer;
@@ -91,7 +106,8 @@ input[type="number"] {
     animation-delay: 0.3s;
     box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
+
 }
 
 #store-select:focus {
@@ -106,13 +122,12 @@ input[type="number"] {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
-    font-family: 'Oxygen', sans-serif;
     background-color: #1a9a04;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.2);
+    box-shadow: 0px 10px 9px -1px rgb(3, 40, 0);
     transition: all 0.3s ease;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
@@ -131,16 +146,10 @@ input[type="number"] {
     overflow-y: auto;
     background: white;
     border: 2px solid #333;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 15px;
     box-shadow: -5px -5px 0px rgba(26, 154, 4, 0.682);
-    opacity: 0;
-    animation: fadeInPage 1s ease-out forwards;
-    animation-delay: 0.5s;
-}
-
-#results-container:not(:empty) {
-    display: block;
+    display: none;
 }
 
 .summary {
@@ -226,7 +235,6 @@ input[type="number"] {
     position: relative;
     width: 100%;
     max-width: 219px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 }
@@ -235,13 +243,12 @@ input[type="number"] {
     width: 219px;
     padding: 10px 20px;
     font-size: 14px;
-    font-family: 'Oxygen', sans-serif;
     background-color: #1a9a04;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    box-shadow: 0px 10px 9px -1px rgb(36, 233, 0);
     transition: all 0.3s ease;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
@@ -258,38 +265,40 @@ input[type="number"] {
     box-shadow: none;
 }
 
+/* 
 #coordinates-display {
     font-size: 12px;
     color: #666;
     margin-top: 5px;
     text-align: center;
-    font-family: 'Oxygen', sans-serif;
-    width: 100%;
 }
+*/
 
 #grocery-list-container {
-    margin-top: 20px;
     width: 219px;
+    margin: 0 auto;
 }
 
 #grocery-item-input {
     width: 195px;
-    margin-bottom: 10px;
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    box-shadow: 0px 10px 9px -1px rgb(9, 98, 1);
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
+    margin-top: 30px;
+    height: 25px;
+
 }
 
 #add-item-button {
+    margin-top: 30px;
     padding: 10px 20px;
     font-size: 14px;
-    font-family: 'Oxygen', sans-serif;
     background-color: #1a9a04;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     cursor: pointer;
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    box-shadow: 0px 10px 9px -1px rgb(6, 74, 0);
     transition: all 0.3s ease;
     width: 219px;
     opacity: 0;
@@ -354,10 +363,9 @@ input[type="number"] {
     padding: 10px 20px;
     font-size: 14px;
     cursor: pointer;
-    font-family: 'Oxygen', sans-serif;
     display: block;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
     margin: 20px auto; /* Center the buttons */
     padding: 10px 20px; /* Add padding */
     background-color: #28a745; /* Button color */
@@ -367,6 +375,8 @@ input[type="number"] {
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.3s; /* Slight delay for buttons */
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #back-button:hover {
@@ -374,9 +384,12 @@ input[type="number"] {
 }
 
 #radius-input {
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    padding-top: 0;
+    box-shadow: 0px 10px 9px -1px rgb(53, 197, 28);
     border: none;
-    border-radius: 4px;
+    margin-top: 30px;
+    border-radius: 25px;
+    height: 35px;
 }
 
 .produce-specs {

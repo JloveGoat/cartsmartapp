@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     background-image: url('C:/Users/srika/Downloads/green2-bg.jpg');
     color: #333;
     margin: 0;
@@ -9,7 +8,9 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family: 'Oxygen', sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
 #cartsmart-subtitle {
@@ -18,43 +19,133 @@ body {
     text-align: center;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
+    border: 5px solid darkgreen; /* Added 5px border with dark green color */
+    border-radius: 25px;
+    box-shadow: 0px 10px 9px -1px rgb(1, 6, 0);
 }
 
 #add-list-button {
+    font-size: 20px;
     display: block;
     margin: 35px auto; /* Center the buttons */
-    padding: 10px 20px; /* Add padding */
-    background-color: #28a745; /* Button color */
+    padding: 5px 20px; /* Add padding */
+    background: linear-gradient(to bottom, #28a745, #1a9a04); /* Gradient for glossy effect */
     color: white; /* Text color */
     border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
+    border-radius: 25px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    box-shadow: 0px 10px 9px -1px rgb(23, 255, 0);
     transition: all 0.3s ease; /* Smooth transition */
     width: 219px; /* Same width as other buttons */
+    height: 70px;
+    position: relative; /* For pseudo-element positioning */
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.3s; /* Slight delay for buttons */
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#add-list-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Light shine effect */
+    border-radius: 25px; /* Match button's border radius */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+#add-list-button:hover::after {
+    opacity: 1; /* Show shine on hover */
 }
 
 #past-lists-button {
+    font-size: 20px;
     display: block;
     margin: 35px auto; /* Center the buttons */
-    padding: 10px 20px; /* Add padding */
-    background-color: #28a745; /* Button color */
+    padding: 5px 20px; /* Add padding */
+    background: linear-gradient(to bottom, #28a745, #1a9a04); /* Gradient for glossy effect */
     color: white; /* Text color */
     border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
+    border-radius: 25px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
-    box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
+    box-shadow: 0px 10px 9px -1px rgb(26, 193, 9);
     transition: all 0.3s ease; /* Smooth transition */
+    height: 70px;
     width: 219px; /* Same width as other buttons */
+    position: relative; /* For pseudo-element positioning */
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
     animation-delay: 0.3s; /* Slight delay for buttons */
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
-#add-list-button:hover, #past-lists-button:hover {
+#past-lists-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Light shine effect */
+    border-radius: 25px; /* Match button's border radius */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+#past-lists-button:hover::after {
+    opacity: 1; /* Show shine on hover */
+}
+
+#benefits-button {
+    font-size: 20px;
+    display: block;
+    margin: 35px auto; /* Center the buttons */
+    padding: 5px 20px; /* Add padding */
+    background: linear-gradient(to bottom, #28a745, #1a9a04); /* Gradient for glossy effect */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0px 10px 9px -1px rgb(11, 119, 0);
+    transition: all 0.3s ease; /* Smooth transition */
+    width: 219px; /* Same width as other buttons */
+    height: 70px;
+    position: relative; /* For pseudo-element positioning */
+    opacity: 0;
+    animation: fadeInPage 1s ease-out forwards;
+    animation-delay: 0.3s; /* Slight delay for buttons */
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+#benefits-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Light shine effect */
+    border-radius: 25px; /* Match button's border radius */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+#benefits-button:hover::after {
+    opacity: 1; /* Show shine on hover */
+}
+
+
+#add-list-button:hover, #past-lists-button:hover, #benefits-button:hover{
     background-color: #147803; /* Darker green on hover */
 }
 
@@ -236,10 +327,13 @@ body {
 #cartsmart-title {
     font-size: 48px;
     font-weight: bold;
-    color: #000000;
+    background: linear-gradient(to right, lightgreen, darkgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
     opacity: 0;
     animation: fadeInPage 1s ease-out forwards;
+    margin-top: 55px;
 }
 
 /* Initial page load animation */
@@ -253,3 +347,6 @@ body {
         transform: translateY(0);
     }
 }
+
+
+
