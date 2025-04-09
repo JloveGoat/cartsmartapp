@@ -96,6 +96,7 @@ const testStores = [
             brusselsSprouts: 2.55,
             icebergLettuce: 1.99,
             whiteMushrooms: 1.75,
+            
         }
     },
     {
@@ -210,14 +211,23 @@ function milesToMeters(miles) {
 
 // Function to format item name for display and matching
 function formatItemName(name) {
-    // Convert to lowercase and trim spaces only
-    return name.toLowerCase().trim();
+    // Remove spaces and convert to camelCase
+    return name.toLowerCase()
+        .trim()
+        .split(' ')
+        .map((word, index) => 
+            index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+        )
+        .join('');
 }
 
 // Function to format item for display
 function formatItemForDisplay(name) {
-    // Keep it lowercase to match store data
-    return name.toLowerCase().trim();
+    // Convert camelCase back to spaced words for display
+    return name
+        .replace(/([A-Z])/g, ' $1') // Add space before capital letters
+        .toLowerCase()
+        .trim();
 }
 
 // Function to add bounce animation
@@ -236,8 +246,8 @@ function addGroceryItem() {
 
     addBounceEffect(addItemButton);
 
-    const camelCaseName = formatItemName(itemInput);
-    userGroceryList.add(camelCaseName);
+    const formattedName = formatItemName(itemInput);
+    userGroceryList.add(formattedName);
     updateGroceryListDisplay();
     groceryItemInput.value = ''; // Clear input
 }
@@ -278,24 +288,20 @@ function calculateTotalCost(storePrices) {
     // If user has a grocery list, only calculate costs for those items
     if (userGroceryList.size > 0) {
         userGroceryList.forEach(item => {
-            // Convert item name to lowercase for case-insensitive comparison
-            const itemLower = item.toLowerCase();
-            let found = false;
-            
-            // Look for the item in store prices (case-insensitive)
-            for (const [storeItem, price] of Object.entries(storePrices)) {
-                if (storeItem.toLowerCase() === itemLower) {
-                    costs[item] = price;
-                    total += price;
-                    found = true;
-                    break;
-                }
-            }
-            
-            if (!found) {
+            // The item is already in camelCase format from the input
+            if (storePrices[item] !== undefined) {
+                costs[item] = storePrices[item];
+                total += storePrices[item];
+            } else {
                 costs[item] = null; // Item not available at this store
             }
         });
+    } else {
+        // If no grocery list, include all items
+        for (const [item, price] of Object.entries(storePrices)) {
+            costs[item] = price;
+            total += price;
+        }
     }
     
     costs.total = total;
