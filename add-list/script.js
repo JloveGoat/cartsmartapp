@@ -138,6 +138,161 @@ const locationButton = document.getElementById('location-button');
 let userLocation = null;
 let userGroceryList = new Set(); // Store unique items
 
+// Common grocery items dictionary for spell checking
+const commonGroceryItems = [
+    // Fruits
+    'apple', 'banana', 'orange', 'grape', 'strawberry', 'blueberry', 'raspberry',
+    'blackberry', 'pineapple', 'mango', 'kiwi', 'peach', 'pear', 'plum', 'lemon',
+    'lime', 'watermelon', 'cantaloupe', 'pomegranate', 'fig', 'date',
+
+    // Vegetables
+    'carrot', 'broccoli', 'spinach', 'lettuce', 'tomato', 'potato', 'onion',
+    'garlic', 'cucumber', 'pepper', 'celery', 'asparagus', 'corn', 'mushroom',
+    'zucchini', 'eggplant', 'cabbage', 'cauliflower', 'pea', 'bean',
+
+    // Common items
+    'bread', 'milk', 'cheese', 'egg', 'butter', 'yogurt', 'cream', 'sugar',
+    'flour', 'rice', 'pasta', 'cereal', 'coffee', 'tea', 'juice', 'water',
+    'salt', 'pepper', 'oil', 'vinegar'
+];
+
+// Calculate Levenshtein distance between two strings
+function levenshteinDistance(str1, str2) {
+    const m = str1.length;
+    const n = str2.length;
+    const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) {
+        dp[i][0] = i;
+    }
+    for (let j = 0; j <= n; j++) {
+        dp[0][j] = j;
+    }
+
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (str1[i - 1] === str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = 1 + Math.min(
+                    dp[i - 1][j],     // deletion
+                    dp[i][j - 1],     // insertion
+                    dp[i - 1][j - 1]  // substitution
+                );
+            }
+        }
+    }
+    return dp[m][n];
+}
+
+// Find closest matching word
+function findClosestMatch(input) {
+    input = input.toLowerCase().trim();
+    
+    // If the word is already in our dictionary, return it
+    if (commonGroceryItems.includes(input)) {
+        return input;
+    }
+
+    let closestMatch = input;
+    let minDistance = Infinity;
+
+    for (const word of commonGroceryItems) {
+        const distance = levenshteinDistance(input, word);
+        // Only consider words with a similar length (within 2 characters)
+        if (Math.abs(word.length - input.length) <= 2) {
+            // Only consider corrections within a reasonable distance
+            if (distance < minDistance && distance <= 2) {
+                minDistance = distance;
+                closestMatch = word;
+            }
+        }
+    }
+
+    return closestMatch;
+}
+
+// Function to show correction notification
+function showCorrectionNotification(original, corrected) {
+    const notification = document.createElement('div');
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.backgroundColor = 'rgba(26, 154, 4, 0.9)';
+    notification.style.color = 'white';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '25px';
+    notification.style.zIndex = '1000';
+    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    notification.style.transition = 'opacity 0.3s ease';
+    notification.textContent = `Did you mean "${corrected}"?`;
+
+    // Add buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.marginTop = '10px';
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.justifyContent = 'center';
+    buttonContainer.style.gap = '10px';
+
+    const yesButton = document.createElement('button');
+    yesButton.textContent = 'Yes';
+    yesButton.style.padding = '5px 15px';
+    yesButton.style.border = 'none';
+    yesButton.style.borderRadius = '15px';
+    yesButton.style.backgroundColor = 'white';
+    yesButton.style.color = '#1a9a04';
+    yesButton.style.cursor = 'pointer';
+    yesButton.style.transition = 'all 0.3s ease';
+
+    const noButton = document.createElement('button');
+    noButton.textContent = 'No';
+    noButton.style.padding = '5px 15px';
+    noButton.style.border = 'none';
+    noButton.style.borderRadius = '15px';
+    noButton.style.backgroundColor = 'white';
+    noButton.style.color = '#1a9a04';
+    noButton.style.cursor = 'pointer';
+    noButton.style.transition = 'all 0.3s ease';
+
+    buttonContainer.appendChild(yesButton);
+    buttonContainer.appendChild(noButton);
+    notification.appendChild(buttonContainer);
+
+    document.body.appendChild(notification);
+
+    // Add hover effects
+    yesButton.addEventListener('mouseover', () => {
+        yesButton.style.backgroundColor = '#1a9a04';
+        yesButton.style.color = 'white';
+    });
+    yesButton.addEventListener('mouseout', () => {
+        yesButton.style.backgroundColor = 'white';
+        yesButton.style.color = '#1a9a04';
+    });
+    noButton.addEventListener('mouseover', () => {
+        noButton.style.backgroundColor = '#1a9a04';
+        noButton.style.color = 'white';
+    });
+    noButton.addEventListener('mouseout', () => {
+        noButton.style.backgroundColor = 'white';
+        noButton.style.color = '#1a9a04';
+    });
+
+    return new Promise((resolve) => {
+        yesButton.onclick = () => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 300);
+            resolve(true);
+        };
+        noButton.onclick = () => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 300);
+            resolve(false);
+        };
+    });
+}
+
 // Function to calculate distance between two points using Haversine formula
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 3959; // Earth's radius in miles
@@ -240,16 +395,38 @@ function addBounceEffect(element) {
 }
 
 // Function to add item to grocery list
-function addGroceryItem() {
+async function addGroceryItem() {
     const itemInput = groceryItemInput.value.trim();
     if (!itemInput) return;
 
     addBounceEffect(addItemButton);
 
-    const formattedName = formatItemName(itemInput);
-    userGroceryList.add(formattedName);
-    updateGroceryListDisplay();
-    groceryItemInput.value = ''; // Clear input
+    // Find closest match for the input
+    const correctedItem = findClosestMatch(itemInput);
+    
+    // If the correction is different from input, show notification
+    if (correctedItem !== itemInput.toLowerCase()) {
+        const useCorrection = await showCorrectionNotification(itemInput, correctedItem);
+        if (useCorrection) {
+            if (!userGroceryList.has(correctedItem)) {
+                userGroceryList.add(correctedItem);
+                updateGroceryListDisplay();
+                groceryItemInput.value = '';
+            }
+        } else {
+            if (!userGroceryList.has(itemInput)) {
+                userGroceryList.add(itemInput);
+                updateGroceryListDisplay();
+                groceryItemInput.value = '';
+            }
+        }
+    } else {
+        if (!userGroceryList.has(correctedItem)) {
+            userGroceryList.add(correctedItem);
+            updateGroceryListDisplay();
+            groceryItemInput.value = '';
+        }
+    }
 }
 
 // Function to remove item from grocery list
@@ -271,14 +448,6 @@ function updateGroceryListDisplay() {
         groceryList.appendChild(itemElement);
     });
 }
-
-// Add event listeners for grocery list
-addItemButton.addEventListener('click', addGroceryItem);
-groceryItemInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addGroceryItem();
-    }
-});
 
 // Modify the calculate total cost function to only include selected items
 function calculateTotalCost(storePrices) {
@@ -442,8 +611,66 @@ function findCheapestStore(maxDistance, maxStores) {
     };
 }
 
+// Function to show error notification
+function showErrorNotification(message) {
+    // Remove any existing error notifications
+    const existingNotification = document.querySelector('.error-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = 'error-notification';
+    notification.textContent = message;
+
+    // Insert notification before the search button
+    const searchButton = document.getElementById('search-button');
+    searchButton.parentNode.insertBefore(notification, searchButton);
+
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Function to validate search inputs
+function validateSearchInputs() {
+    const radius = radiusInput.value.trim();
+    const storeCount = storeSelect.value;
+    const locationSelected = userLocation !== null;
+    const hasGroceryItems = userGroceryList.size > 0;
+
+    if (!locationSelected) {
+        showErrorNotification('Please select your location first');
+        return false;
+    }
+
+    if (!radius) {
+        showErrorNotification('Please enter a search radius');
+        return false;
+    }
+
+    if (!storeCount) {
+        showErrorNotification('Please select the number of stores to compare');
+        return false;
+    }
+
+    if (!hasGroceryItems) {
+        showErrorNotification('Please add at least one item to your grocery list');
+        return false;
+    }
+
+    return true;
+}
+
 // Function to search for nearby stores
 async function searchNearbyStores() {
+    // Validate inputs before proceeding
+    if (!validateSearchInputs()) {
+        return;
+    }
+
     const radius = parseInt(radiusInput.value) || 5;
     const maxStores = parseInt(storeSelect.value) || 5;
 
@@ -454,11 +681,11 @@ async function searchNearbyStores() {
     const results = findCheapestStore(radius, maxStores);
     console.log('Search results:', results);
     
-    if (results) {
-         // Hide input container
-         document.querySelector('.input-container').classList.add('hidden');
+    if (results && results.singleStoreCosts.length > 0) {
+        // Hide input container
+        document.querySelector('.input-container').classList.add('hidden');
         
-         // Show results
+        // Show results
         displayTestResults(results, radius);
         resultsContainer.style.display = 'block';
         
@@ -485,8 +712,7 @@ async function searchNearbyStores() {
             document.querySelector('.input-container').classList.remove('hidden');
         };
     } else {
-        resultsContainer.innerHTML = 'No stores found within the specified radius.';
-        resultsContainer.style.display = 'block';
+        showErrorNotification('No stores found with your items within the specified radius');
     }
 }
 
@@ -579,4 +805,13 @@ searchButton.addEventListener('click', searchNearbyStores);
 // Add event listener for enter key on radius input
 radiusInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') searchNearbyStores();
-}); 
+});
+
+// Update the event listeners
+groceryItemInput.addEventListener('keypress', async (e) => {
+    if (e.key === 'Enter') {
+        await addGroceryItem();
+    }
+});
+
+addItemButton.addEventListener('click', addGroceryItem); 
