@@ -1,10 +1,19 @@
-// Store data with prices
+// Store data with prices and organic classification
 const testStores = [
     {
         name: "Aldi Ogden Avenue",
-        distance: 1.2,
         location: { lat: 41.795054238397235, lng: -88.1215363761931},
         prices: {
+            // Non-organic items
+            apple: { price: 0.66, organic: false },
+            rice: { price: 2.65, organic: false },
+            banana: { price: 0.87, organic: false },
+            bread: { price: 3.60, organic: false },
+            // Organic items
+            organicApple: { price: 1.20, organic: true },
+            organicRice: { price: 4.25, organic: true },
+            organicBanana: { price: 1.25, organic: true },
+            organicBread: { price: 4.95, organic: true },
             flatLeafSpinach: 1.75,
             coleslaw: 1.89,
             organicChoppedKale: 3.19,
@@ -96,16 +105,81 @@ const testStores = [
             brusselsSprouts: 2.55,
             icebergLettuce: 1.99,
             whiteMushrooms: 1.75,
-            rice: 2.65,
-            apple: .66,
-            
+            fancyMixedNuts: 5.49,
+            peeledGarlic: 2.99,
+            organicYellowPotatoes: 4.39,
+            organicGalaApples: 4.39,
+            fujiApples: 3.9,
+            galaApples: 3.29,
+            garlic: 1.75,
+            cosmicCrispApples: 2.75,
+            frenchGreenBeans: 3.29,
+            organicRomaineHearts: 4.29,
+            redGrapes: 1.19,
+            mango: 1.19,
+            honeycrispApples: 2.35,
+            bananas: 0.49,
+            broccoliCrowns: 2.15,
+            smallSeedlessWatermelon: 4.59,
+            largeSeedlessWatermelon: 7.69,
+            cantaloupe: 2.19,
+            largeAvocado: 1.05,
+            greenGrapes: 5.38,
+            organicCherubGrapeTomatoes: 3.29,
+            organicZucchini: 2.59,
+            seedlessLemons: 2.99,
         }
     },
     {
         name: "Jewel Osco Naperville",
-        distance: 1,
-        location: { lat: 41.7908, lng: -88.1233 },
+        location: { lat: 41.7870099, lng: -88.1451827},
         prices: {
+            // Non-organic items
+            apple: { price: 0.30, organic: false },
+            rice: { price: 3.20, organic: false },
+            banana: { price: 0.87, organic: false },
+            bread: { price: 3.60, organic: false },
+            // Organic items
+            organicApple: { price: 0.89, organic: true },
+            organicRice: { price: 5.15, organic: true },
+            organicBanana: { price: 1.15, organic: true },
+            organicBread: { price: 4.75, organic: true },
+            greenBeans: 2,
+            greenAsparagus: 3.99,
+            brocoliCrown: 1.87,
+            zucchini: .60, //per piece
+            romaineLettuceHearts: 3.99, //prepackaged 
+            tomatillo: 1.29,
+            longCucumber: 1.79,
+            yellowCorn: 1.25,
+            miniCucumbers: 3.99,
+            slicedBellaMushrooms: 2.99,
+            rubyGoldPotatoes: 4.99,
+            sweetPotato: 1.39, //individual potato
+            greenCabbage: 1.78,
+            babyBokChoy: 1.99,
+            hothouseLargeTomato: 1.79,//each
+            brocolliFlorets: 4.49,//packaged
+            redBellPepper: 1.99,
+            cucumber: .99,
+            redRomaTomatoes: 1.99,
+            gingerRoot: 1,//each
+            eggplant: 1.79,
+            cilantro: .99,
+            cauliflower: 4.45,//packaged
+            shallot: .33,//each
+            jalapenoPeppers: 1.49,//per pound
+            redOnions: 1.89,//per pound
+            celery: 2.99,//packaged
+            orangeBellPepper: 1.99,//each
+            garlic: 1.99,
+            yellowBellPepper: 1.99,//each
+            tomatoes: 3.99,//2 count
+            greenBellPepper: .99,//each
+            russetPotatoes: 5.99,//10 pounds
+            organicBabyBellaMushrooms: 2.99,//packaged
+            sweetPotato: 1.29,//per pound
+            organicRedRomaTomato: 1.99,//per pound            
             bread: 3.6,
             banana: 0.87,
             rice: 3.20,
@@ -114,13 +188,132 @@ const testStores = [
     },
     {
         name: "whole foods naperville",
-        distance: 1,
         location: { lat: 41.7908, lng: -88.1233 },
         prices: {
-            bread: 3.32,
-            banana: 0.65,
-            rice: 3.65,
-            apple: .65,
+            // Non-organic items
+            apple: { price: 0.65, organic: false },
+            rice: { price: 3.65, organic: false },
+            banana: { price: 0.65, organic: false },
+            bread: { price: 3.32, organic: false },
+            // Organic items
+            organicApple: { price: 1.15, organic: true },
+            organicRice: { price: 5.45, organic: true },
+            organicBanana: { price: 0.95, organic: true },
+            organicBread: { price: 4.85, organic: true },
+            flatLeafSpinach: 1.75,
+            coleslaw: 1.89,
+            organicChoppedKale: 3.19,
+            southwestChoppedSalad: 3.65,
+            italianSalad: 2.85,
+            springMix: 2.85,
+            gardenSalad: 2.19,
+            sweetKaleSaladKit: 3.65,
+            caesarSaladKit: 3.29,
+            asianChoppedSaladKit: 3.65,
+            organicArugulaSpinachMix: 3.19,
+            shreddedLettuce: 2.99,
+            mangoSlices: 5.99,
+            sweetButterSalad: 2.55,
+            organicMixedGreens: 3.99,
+            organicSpringMix: 5.39,
+            organicBabySpinach: 3.19,
+            sweetOnions: 2.99,
+            carrots: 1.51,
+            romaineLettuceHearts: 2.35,
+            caramelApples: 3.99,
+            papaya: 4.03,
+            cucumber: .79,
+            artisanLettuc: 3.55,
+            babyCarrots: 1.19,
+            autumnGrapes: 6.59,
+            grannySmithApples: 3.99,
+            honeyTomatoes: 3.49,
+            redDeliciousApples: 2.99,
+            idahoYellowPotatoes: 1.99,
+            pomegranate: 2.99,
+            strawberries: 2.75,
+            greenPeppers: 1.50,
+            pinkLadyApples: 4.29,
+            organicBlackberries: 3.55,
+            russetPotatoes: 1.89,
+            blueberries: 2.99,
+            mandarinOranges: 3.99,
+            pineapple: 3.49,
+            grapeTomatoes: 2.99,
+            blackerries: 2.65,
+            asparagus: 1.99,
+            jalapenoPeppers: 0.89,
+            grapeFruit: 5.49,
+            organicStrawberries: 5.19,
+            cauliflowerCrowns: 3.23,
+            miniAvocados: 3.25,
+            miniSweetPeppers: 3.36,
+            anjouPears: 5.19,
+            tomatoes: 2.19,
+            tomatoesOnTheVine: 2.75,
+            sugarSnapPeas: 2.55,
+            lemons: 4.29,
+            organicCeleryHearts: 2.45,
+            redPotatoes: 3.95,
+            organicMiniCucumbers: 3.65,
+            radishes: 1.75,
+            cocktailTomatoes: 4.29,
+            greenOnions: 1.05,
+            slicedWhiteMushrooms: 1.89,
+            organicGrapeTomatoes: 3.09,
+            kiwi: 4.85,
+            organicBroccoli: 3.29,
+            organicPinkLadyApples: 4.85,
+            sweetCorn: 3.29,
+            bakingPotatoes: 3.95,
+            limes: 2.45,
+            celery: 1.89,
+            whiteOnions: 2.19,
+            cherubGrapeTomatoes: 2.49,
+            redOnions: 2.19,
+            miniCucumbers: 1.89,
+            yellowOnions: 2.65,
+            ColoredPeppers: 2.99,
+            organicBlueberries: 3.55,
+            cilantroBunch: 0.89,
+            bostonLettuce: 2.75,
+            freshNavelOranges: 4.09,
+            gingerRoot: 2.19,
+            seedlessCucumber: 1.05,
+            biteSizeYellowPotatoes: 3.65,
+            yellowPotatoes: 3.95,
+            raspberries: 3.65,
+            caraCaraOranges: 3.19,
+            organicBabyPeeledCarrots: 1.75,
+            snackingTomatoesOnTheVine: 3.95,
+            organicRaspberries: 4.85,
+            babyBellaMushrooms: 1.99,
+            brusselsSprouts: 2.55,
+            icebergLettuce: 1.99,
+            whiteMushrooms: 1.75,
+            fancyMixedNuts: 5.49,
+            peeledGarlic: 2.99,
+            organicYellowPotatoes: 4.39,
+            organicGalaApples: 4.39,
+            fujiApples: 3.9,
+            galaApples: 3.29,
+            garlic: 1.75,
+            cosmicCrispApples: 2.75,
+            frenchGreenBeans: 3.29,
+            organicRomaineHearts: 4.29,
+            redGrapes: 1.19,
+            mango: 1.19,
+            honeycrispApples: 2.35,
+            bananas: 0.49,
+            broccoliCrowns: 2.15,
+            smallSeedlessWatermelon: 4.59,
+            largeSeedlessWatermelon: 7.69,
+            cantaloupe: 2.19,
+            largeAvocado: 1.05,
+            greenGrapes: 5.38,
+            organicCherubGrapeTomatoes: 3.29,
+            organicZucchini: 2.59,
+            seedlessLemons: 2.99,
         }
     }
 ];
@@ -132,13 +325,13 @@ const searchButton = document.getElementById('search-button');
 const resultsContainer = document.getElementById('results-container');
 const coordinatesDisplay = document.getElementById('coordinates-display');
 const groceryItemInput = document.getElementById('grocery-item-input');
+const organicSelector = document.getElementById('organic-selector');
 const addItemButton = document.getElementById('add-item-button');
 const groceryList = document.getElementById('grocery-list');
 const locationButton = document.getElementById('location-button');
 
-// Add user location tracking
-let userLocation = null;
-let userGroceryList = new Set(); // Store unique items
+// Store user's grocery list with organic preferences
+let userGroceryList = new Set();
 
 // Common grocery items dictionary for spell checking
 const commonGroceryItems = [
@@ -376,33 +569,47 @@ function milesToMeters(miles) {
     return miles * 1609.34;
 }
 
-// Function to format item name for display and matching
-function formatItemName(name) {
+// Function to format item name for storage
+function formatItemName(name, isOrganic = false) {
     // First convert to lowercase and trim
     const processedName = name.toLowerCase().trim();
     
-    // For single word items, just return as is
+    // For single word items, just add organic prefix if needed
     if (!processedName.includes(' ')) {
-        return processedName;
+        return isOrganic ? 'organic' + processedName.charAt(0).toUpperCase() + processedName.slice(1) : processedName;
     }
     
-    // For multi-word items, convert to camelCase
-    const words = processedName.split(' ');
-    return words.map((word, index) => {
-        if (index === 0) {
-            return word.toLowerCase();
-        }
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join('');
+    // For multi-word items, convert to camelCase and add organic prefix if needed
+    const camelCase = processedName
+        .split(' ')
+        .map((word, index) => {
+            return index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join('');
+    
+    return isOrganic ? 'organic' + camelCase.charAt(0).toUpperCase() + camelCase.slice(1) : camelCase;
 }
 
 // Function to format item for display
 function formatItemForDisplay(name) {
-    // Convert camelCase back to spaced words for display
-    return name
-        .replace(/([A-Z])/g, ' $1') // Add space before capital letters
-        .toLowerCase()
-        .trim();
+    // Check if it's an organic item
+    const isOrganic = name.startsWith('organic');
+    let displayName = name;
+    
+    if (isOrganic) {
+        // Remove 'organic' prefix and add space
+        displayName = name.replace('organic', '');
+        // Add space before capital letters
+        displayName = displayName.replace(/([A-Z])/g, ' $1').trim();
+        // Capitalize first letter
+        displayName = 'Organic ' + displayName.charAt(0).toUpperCase() + displayName.slice(1);
+    } else {
+        // Add space before capital letters for non-organic items
+        displayName = displayName.replace(/([A-Z])/g, ' $1').trim();
+        displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+    }
+    
+    return displayName;
 }
 
 // Function to add bounce animation
@@ -417,6 +624,8 @@ function addBounceEffect(element) {
 // Function to add item to grocery list
 async function addGroceryItem() {
     const itemInput = groceryItemInput.value.trim();
+    const organicPreference = organicSelector.value;
+    
     if (!itemInput) return;
 
     addBounceEffect(addItemButton);
@@ -424,28 +633,15 @@ async function addGroceryItem() {
     // Find closest match for the input
     const correctedItem = findClosestMatch(itemInput);
     
-    // If the correction is different from input, show notification
-    if (correctedItem !== itemInput.toLowerCase()) {
-        const useCorrection = await showCorrectionNotification(itemInput, correctedItem);
-        if (useCorrection) {
-            if (!userGroceryList.has(correctedItem)) {
-                userGroceryList.add(correctedItem);
-                updateGroceryListDisplay();
-                groceryItemInput.value = '';
-            }
-        } else {
-            if (!userGroceryList.has(itemInput)) {
-                userGroceryList.add(itemInput);
-                updateGroceryListDisplay();
-                groceryItemInput.value = '';
-            }
-        }
-    } else {
-        if (!userGroceryList.has(correctedItem)) {
-            userGroceryList.add(correctedItem);
-            updateGroceryListDisplay();
-            groceryItemInput.value = '';
-        }
+    // Format the item name with organic preference
+    const isOrganic = organicPreference === 'organic';
+    const formattedItem = formatItemName(correctedItem, isOrganic);
+    
+    // Store the item with its organic preference
+    if (!userGroceryList.has(formattedItem)) {
+        userGroceryList.add(formattedItem);
+        updateGroceryListDisplay();
+        groceryItemInput.value = '';
     }
 }
 
@@ -474,38 +670,19 @@ function calculateTotalCost(storePrices) {
     const costs = {};
     let total = 0;
     
-    // If user has a grocery list, only calculate costs for those items
     if (userGroceryList.size > 0) {
         userGroceryList.forEach(item => {
-            // Format the item to match store data format
-            const formattedItem = formatItemName(item);
-            console.log('Looking for item:', formattedItem, 'in store prices:', storePrices);
-            
-            // Check if the formatted item exists in store prices
-            if (storePrices[formattedItem] !== undefined) {
-                costs[formattedItem] = storePrices[formattedItem];
-                total += storePrices[formattedItem];
-                console.log('Found price for', formattedItem, ':', storePrices[formattedItem]);
+            if (storePrices[item] !== undefined) {
+                costs[item] = storePrices[item].price;
+                total += storePrices[item].price;
             } else {
-                // Try with first letter lowercase
-                const lowerCaseItem = formattedItem.charAt(0).toLowerCase() + formattedItem.slice(1);
-                if (storePrices[lowerCaseItem] !== undefined) {
-                    costs[lowerCaseItem] = storePrices[lowerCaseItem];
-                    total += storePrices[lowerCaseItem];
-                    console.log('Found price for', lowerCaseItem, ':', storePrices[lowerCaseItem]);
-                } else {
-                    costs[formattedItem] = null; // Item not available at this store
-                    console.log('No price found for', formattedItem);
-                }
+                costs[item] = null;
             }
         });
     } else {
-        // If no grocery list, include all items
-        for (const [item, price] of Object.entries(storePrices)) {
-            if (price !== undefined && price !== null) {
-                costs[item] = price;
-                total += price;
-            }
+        for (const [item, details] of Object.entries(storePrices)) {
+            costs[item] = details.price;
+            total += details.price;
         }
     }
     
