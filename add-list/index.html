@@ -16,30 +16,25 @@
     <h1 id="cartsmart-title">CartSmart</h1>
     <button onclick="window.location.href='../index.html'" id="back-button">Back to Home</button>
     <div class="input-container">
-        <div id="location-container">
-            <button id="location-button">Use My Location</button>
-            <div id="coordinates-display"></div>
-        </div>
-        <input type="number" id="radius-input" min="0" placeholder="Enter x number of miles" />
-        <select id="store-select">
-            <option value="" disabled selected>Select number of stores</option>
-            <option value="1">1 Store</option>
-            <option value="2">2 Stores</option>
-            <option value="3">3 Stores</option>
-            <option value="4">4 Stores</option>
-            <option value="5">5 Stores</option>
-        </select>
-        <div id="grocery-list-container">
-            <input type="text" id="grocery-item-input" placeholder="Enter item (e.g., apple, bread)">
-            <select id="organic-selector">
-                <option value="any">Any</option>
-                <option value="organic">Organic</option>
-                <option value="non-organic">Non-Organic</option>
+        <button id="location-button">Get My Location</button>
+        <div id="coordinates-display"></div>
+        <input type="number" id="radius-input" placeholder="Search radius (miles)">
+        <div class="search-options">
+            <select id="store-select">
+                <option value="">Select # of stores to compare</option>
+                <option value="1">1 store</option>
+                <option value="2">2 stores</option>
+                <option value="3">3 stores</option>
+                <option value="4">4 stores</option>
+                <option value="5">5 stores</option>
             </select>
-            <button id="add-item-button">Add Item</button>
-            <div id="grocery-list"></div>
         </div>
-        <button id="search-button">Search Stores</button>
+        <div class="input-group">
+            <input type="text" id="grocery-item-input" placeholder="Enter grocery item">
+            <button id="add-item-button">Add Item</button>
+        </div>
+        <div id="grocery-list"></div>
+        <button id="search-button">Search Nearby Stores</button>
     </div>
     
     <div id="results-container"></div>

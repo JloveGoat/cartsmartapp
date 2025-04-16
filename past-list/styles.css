@@ -18,7 +18,7 @@
 }
 
 body {
-    background-image: url('C:/Users/srika/Downloads/green2-bg.jpg');
+    background-image: url('../images/green2-bg.jpg');
     color: #333;
     margin: 0;
     padding: 20px;
