@@ -107,11 +107,45 @@ input[type="number"] {
     box-shadow: 0px 10px 9px -1px rgb(15, 106, 6);
     border: none;
     border-radius: 25px;
-
 }
 
+/* Style the dropdown options */
+#store-select option {
+    padding: 12px;
+    font-size: 16px;
+    background-color: white;
+    color: #333;
+}
+
+/* Style the select when opened */
 #store-select:focus {
     outline: none;
+    box-shadow: 0px 12px 11px -1px rgb(15, 106, 6);
+}
+
+/* Container for the select to control positioning */
+.search-options {
+    width: 215px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* For Webkit browsers like Chrome/Safari */
+#store-select::-webkit-listbox {
+    width: 215px;
+    border-radius: 15px;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* For Firefox */
+#store-select:-moz-list-box {
+    width: 215px;
+    border-radius: 15px;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #location-input {
@@ -515,3 +549,7 @@ input[type="number"] {
 .error-notification.fade-out {
     opacity: 0;
 }
+
+
+
+

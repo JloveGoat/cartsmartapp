@@ -293,44 +293,13 @@ const testStores = [
             organicKiwi: 3.99, // 1 lb
             danjouPear: 1.99, // 1lb
             organicRedSeedlessGrapes: 7.98, // 2 lb
-
-            
-
-
-
-
-
-            yellowCorn: 1.25,
-            miniCucumbers: 3.99,
-            slicedBellaMushrooms: 2.99,
-            rubyGoldPotatoes: 4.99,
-            babyBokChoy: 1.99,
-            brocolliFlorets: 4.49,//packaged
-            cucumber: .99,
-            redRomaTomatoes: 1.99,
-            gingerRoot: 1,//each
-            eggplant: 1.79,
-            cilantro: .99,
-            cauliflower: 4.45,//packaged
-            shallot: .33,//each
-            jalapenoPeppers: 1.49,//per pound
-            redOnions: 1.89,//per pound
-            celery: 2.99,//packaged
-            orangeBellPepper: 1.99,//each
-            tomatoes: 3.99,//2 count
-            russetPotatoes: 5.99,//10 pounds
-            organicBabyBellaMushrooms: 2.99,//packaged
-            sweetPotato: 1.29,//per pound
-            organicRedRomaTomato: 1.99,//per pound
-            cutBeans: 3.79,
-            redBeet: .79,//per pound
-            organicCucumber: 1.49,//each
-            whiteOnions: 1.29,//per pound
-            russetPotatoes: 3.99,//5 pounds
-            cauliflower: 6.23,//per piece
-            babyYellowPotatoes: 4.99,//24oz packaged
-            organicZucchini: 1.99,//per piece
-            edamame: 3.49,//12oz packaged
+            organicRaspberries: { price: 4.99, organic: true }, // 6 oz prepackaged
+            grapefruitLarge: { price: 1.59, organic: false }, // 1 lb
+            organicBlueberries: { price: 4.99, organic: true }, // 6 oz prepackaged
+            organicGalaApple: { price: 2.49, organic: true }, // 1 lb
+            organicHoneycrispApples: { price: 7.99, organic: false }, // 3 lb prepackaged
+            kiwiFruit: { price: 5.99, organic: false }, // 22 oz prepackaged
+            mexicanPapaya: { price: 1.29, organic: false }, // 1lb
             
         }
     },
@@ -348,120 +317,8 @@ const testStores = [
             organicRice: { price: 5.45, organic: true },
             organicBanana: { price: 0.95, organic: true },
             organicBread: { price: 4.85, organic: true },
-            flatLeafSpinach: 1.75,
-            coleslaw: 1.89,
-            organicChoppedKale: 3.19,
-            southwestChoppedSalad: 3.65,
-            italianSalad: 2.85,
-            springMix: 2.85,
-            gardenSalad: 2.19,
-            sweetKaleSaladKit: 3.65,
-            caesarSaladKit: 3.29,
-            asianChoppedSaladKit: 3.65,
-            organicArugulaSpinachMix: 3.19,
-            shreddedLettuce: 2.99,
-            mangoSlices: 5.99,
-            sweetButterSalad: 2.55,
-            organicMixedGreens: 3.99,
-            organicSpringMix: 5.39,
-            organicBabySpinach: 3.19,
-            sweetOnions: 2.99,
-            carrots: 1.51,
-            romaineLettuceHearts: 2.35,
-            caramelApples: 3.99,
-            papaya: 4.03,
-            cucumber: .79,
-            artisanLettuc: 3.55,
-            babyCarrots: 1.19,
-            autumnGrapes: 6.59,
-            grannySmithApples: 3.99,
-            honeyTomatoes: 3.49,
-            redDeliciousApples: 2.99,
-            idahoYellowPotatoes: 1.99,
-            pomegranate: 2.99,
-            strawberries: 2.75,
-            greenPeppers: 1.50,
-            pinkLadyApples: 4.29,
-            organicBlackberries: 3.55,
-            russetPotatoes: 1.89,
-            blueberries: 2.99,
-            mandarinOranges: 3.99,
-            pineapple: 3.49,
-            grapeTomatoes: 2.99,
-            blackerries: 2.65,
-            asparagus: 1.99,
-            jalapenoPeppers: 0.89,
-            grapeFruit: 5.49,
-            organicStrawberries: 5.19,
-            cauliflowerCrowns: 3.23,
-            miniAvocados: 3.25,
-            miniSweetPeppers: 3.36,
-            anjouPears: 5.19,
-            tomatoes: 2.19,
-            tomatoesOnTheVine: 2.75,
-            sugarSnapPeas: 2.55,
-            lemons: 4.29,
-            organicCeleryHearts: 2.45,
-            redPotatoes: 3.95,
-            organicMiniCucumbers: 3.65,
-            radishes: 1.75,
-            cocktailTomatoes: 4.29,
-            greenOnions: 1.05,
-            slicedWhiteMushrooms: 1.89,
-            organicGrapeTomatoes: 3.09,
-            kiwi: 4.85,
-            organicBroccoli: 3.29,
-            organicPinkLadyApples: 4.85,
-            sweetCorn: 3.29,
-            bakingPotatoes: 3.95,
-            limes: 2.45,
-            celery: 1.89,
-            whiteOnions: 2.19,
-            cherubGrapeTomatoes: 2.49,
-            redOnions: 2.19,
-            miniCucumbers: 1.89,
-            yellowOnions: 2.65,
-            ColoredPeppers: 2.99,
-            organicBlueberries: 3.55,
-            cilantroBunch: 0.89,
-            bostonLettuce: 2.75,
-            freshNavelOranges: 4.09,
-            gingerRoot: 2.19,
-            seedlessCucumber: 1.05,
-            biteSizeYellowPotatoes: 3.65,
-            yellowPotatoes: 3.95,
-            raspberries: 3.65,
-            caraCaraOranges: 3.19,
-            organicBabyPeeledCarrots: 1.75,
-            snackingTomatoesOnTheVine: 3.95,
-            organicRaspberries: 4.85,
-            babyBellaMushrooms: 1.99,
-            brusselsSprouts: 2.55,
-            icebergLettuce: 1.99,
-            whiteMushrooms: 1.75,
-            fancyMixedNuts: 5.49,
-            peeledGarlic: 2.99,
-            organicYellowPotatoes: 4.39,
-            organicGalaApples: 4.39,
-            fujiApples: 3.9,
-            galaApples: 3.29,
-            garlic: 1.75,
-            cosmicCrispApples: 2.75,
-            frenchGreenBeans: 3.29,
-            organicRomaineHearts: 4.29,
-            redGrapes: 1.19,
-            mango: 1.19,
-            honeycrispApples: 2.35,
-            bananas: 0.49,
-            broccoliCrowns: 2.15,
-            smallSeedlessWatermelon: 4.59,
-            largeSeedlessWatermelon: 7.69,
-            cantaloupe: 2.19,
-            largeAvocado: 1.05,
-            greenGrapes: 5.38,
-            organicCherubGrapeTomatoes: 3.29,
-            organicZucchini: 2.59,
-            seedlessLemons: 2.99,
+            
+
         }
     }
 ];
@@ -769,8 +626,42 @@ function addBounceEffect(element) {
     }, 300); // Match this with the animation duration in CSS
 }
 
+// Define units for different product types
+const PRODUCT_UNITS = {
+    fruits: {
+        byPound: ['apples', 'oranges', 'pears', 'peaches', 'bananas', 'mangos'],
+        byOunce: ['blueberries', 'raspberries', 'blackberries', 'strawberries'],
+        byUnit: ['watermelon', 'pineapple', 'coconut']
+    },
+    vegetables: {
+        byPound: ['potatoes', 'tomatoes', 'onions', 'carrots', 'broccoli'],
+        byOunce: ['mushrooms', 'green beans', 'peas'],
+        byUnit: ['lettuce', 'cabbage', 'cauliflower']
+    }
+};
+
+// Helper function to determine the appropriate unit for a product
+function getProductUnit(itemName) {
+    const itemLower = itemName.toLowerCase();
+    
+    // Check fruits
+    if (PRODUCT_UNITS.fruits.byPound.some(item => itemLower.includes(item))) return 'lb';
+    if (PRODUCT_UNITS.fruits.byOunce.some(item => itemLower.includes(item))) return 'oz';
+    if (PRODUCT_UNITS.fruits.byUnit.some(item => itemLower.includes(item))) return 'unit';
+    
+    // Check vegetables
+    if (PRODUCT_UNITS.vegetables.byPound.some(item => itemLower.includes(item))) return 'lb';
+    if (PRODUCT_UNITS.vegetables.byOunce.some(item => itemLower.includes(item))) return 'oz';
+    if (PRODUCT_UNITS.vegetables.byUnit.some(item => itemLower.includes(item))) return 'unit';
+    
+    // Default to pounds if not found
+    return 'lb';
+}
+
 // Function to create and show the produce modifications modal
 function showProduceModal(itemName) {
+    const unit = getProductUnit(itemName);
+    
     // Create modal container
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
@@ -792,7 +683,7 @@ function showProduceModal(itemName) {
     modalContent.style.padding = '30px';
     modalContent.style.borderRadius = '15px';
     modalContent.style.width = '80%';
-    modalContent.style.maxWidth = '600px';
+    modalContent.style.maxWidth = '400px';
     modalContent.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
     modalContent.style.position = 'relative';
     modalContent.style.animation = 'modalSlideIn 0.3s ease-out';
@@ -801,14 +692,8 @@ function showProduceModal(itemName) {
     const style = document.createElement('style');
     style.textContent = `
         @keyframes modalSlideIn {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     `;
     document.head.appendChild(style);
@@ -817,6 +702,32 @@ function showProduceModal(itemName) {
     const modalHeader = document.createElement('div');
     modalHeader.style.marginBottom = '20px';
     modalHeader.innerHTML = `<h2 style="margin: 0; color: #1a9a04;">Modify ${itemName}</h2>`;
+
+    // Create quantity input container
+    const quantityContainer = document.createElement('div');
+    quantityContainer.style.marginBottom = '20px';
+    quantityContainer.innerHTML = `
+        <label for="quantity-input" style="display: block; margin-bottom: 10px; color: #333;">
+            Quantity (${unit}):
+        </label>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <input 
+                type="number" 
+                id="quantity-input" 
+                min="0.1" 
+                step="${unit === 'unit' ? '1' : '0.1'}" 
+                value="1"
+                style="
+                    flex: 1;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    width: 100px;
+                "
+            >
+            <span style="color: #666;">${unit}</span>
+        </div>
+    `;
 
     // Move organic selector to modal
     const organicContainer = document.createElement('div');
@@ -868,6 +779,7 @@ function showProduceModal(itemName) {
 
     // Assemble modal content
     modalContent.appendChild(modalHeader);
+    modalContent.appendChild(quantityContainer);
     modalContent.appendChild(organicContainer);
     modalContent.appendChild(buttonContainer);
     modalOverlay.appendChild(modalContent);
@@ -883,8 +795,11 @@ function showProduceModal(itemName) {
         };
 
         addButton.onclick = () => {
+            const quantity = parseFloat(document.getElementById('quantity-input').value);
             const result = {
-                isOrganic: organicSelect.value === 'organic'
+                isOrganic: organicSelect.value === 'organic',
+                quantity: quantity,
+                unit: unit
             };
             modalOverlay.remove();
             resolve(result);
@@ -918,9 +833,16 @@ async function addGroceryItem() {
         // Format the item name with organic preference
         const formattedItem = formatItemName(correctedItem, modalResult.isOrganic);
         
+        // Create the item object with quantity information
+        const itemWithQuantity = {
+            name: formattedItem,
+            quantity: modalResult.quantity,
+            unit: modalResult.unit
+        };
+        
         // Store the item
-        if (!userGroceryList.has(formattedItem)) {
-            userGroceryList.add(formattedItem);
+        if (!userGroceryList.has(JSON.stringify(itemWithQuantity))) {
+            userGroceryList.add(JSON.stringify(itemWithQuantity));
             updateGroceryListDisplay();
             groceryItemInput.value = '';
         }
@@ -936,12 +858,13 @@ window.removeGroceryItem = function(item) {
 // Function to update grocery list display
 function updateGroceryListDisplay() {
     groceryList.innerHTML = '';
-    userGroceryList.forEach(item => {
+    userGroceryList.forEach(itemString => {
+        const item = JSON.parse(itemString);
         const itemElement = document.createElement('div');
         itemElement.className = 'grocery-item';
         itemElement.innerHTML = `
-            <span>${formatItemForDisplay(item)}</span>
-            <button class="remove-item" onclick="removeGroceryItem('${item}')">&times;</button>
+            <span>${formatItemForDisplay(item.name)} (${item.quantity} ${item.unit})</span>
+            <button class="remove-item" onclick="removeGroceryItem('${itemString}')">&times;</button>
         `;
         groceryList.appendChild(itemElement);
     });
@@ -953,17 +876,19 @@ function calculateTotalCost(storePrices) {
     let total = 0;
     
     if (userGroceryList.size > 0) {
-        userGroceryList.forEach(item => {
-            if (storePrices[item] !== undefined) {
-                costs[item] = storePrices[item].price;
-                total += storePrices[item].price;
+        userGroceryList.forEach(itemString => {
+            const item = JSON.parse(itemString);
+            // Use just the name property for price lookup
+            if (storePrices[item.name] !== undefined) {
+                costs[itemString] = storePrices[item.name];
+                total += storePrices[item.name].price;
             } else {
-                costs[item] = null;
+                costs[itemString] = null;
             }
         });
     } else {
         for (const [item, details] of Object.entries(storePrices)) {
-            costs[item] = details.price;
+            costs[item] = details;
             total += details.price;
         }
     }
@@ -975,7 +900,7 @@ function calculateTotalCost(storePrices) {
 // Modify the find best prices function to only consider selected items
 function findBestPrices(stores) {
     const items = userGroceryList.size > 0 ? 
-        Array.from(userGroceryList) : 
+        Array.from(userGroceryList).map(itemString => JSON.parse(itemString).name) : 
         Array.from(new Set(stores.flatMap(store => Object.keys(store.prices))));
 
     const bestPrices = {};
@@ -986,11 +911,12 @@ function findBestPrices(stores) {
     stores.forEach(store => {
         for (const item of items) {
             const price = store.prices[item];
-            if (price !== undefined && price < bestPrices[item].price) {
+            if (price !== undefined && price.price < bestPrices[item].price) {
                 bestPrices[item] = {
-                    price: price,
+                    price: price.price,
                     store: store.name,
-                    distance: store.distance
+                    distance: store.distance,
+                    organic: price.organic
                 };
             }
         }
@@ -1254,11 +1180,10 @@ function displayTestResults(results, searchRadius) {
                             <ul>
                                 ${Object.entries(store.costs)
                                     .filter(([key]) => key !== 'total')
-                                    .map(([item, price]) => {
+                                    .map(([itemString, price]) => {
                                         if (price !== null && price.price !== undefined) {
-                                            return `<li>${formatItemForDisplay(item)}: $${price.price.toFixed(2)}</li>`;
-                                        } else if (price !== null) {
-                                            return `<li>${formatItemForDisplay(item)}: $${price.toFixed(2)}</li>`;
+                                            const item = JSON.parse(itemString);
+                                            return `<li>${formatItemForDisplay(item.name)} (${item.quantity} ${item.unit}): $${price.price.toFixed(2)}</li>`;
                                         }
                                         return '';
                                     }).join('')}
@@ -1278,8 +1203,15 @@ function displayTestResults(results, searchRadius) {
     const tableElement = document.createElement('div');
     tableElement.className = 'price-comparison';
     
-    // Use grocery list items if available, otherwise use all items
-    const itemsToDisplay = Array.from(userGroceryList).map(item => formatItemName(item));
+    // Get unique item names from the grocery list
+    const itemsToDisplay = Array.from(userGroceryList).map(itemString => {
+        const item = JSON.parse(itemString);
+        return {
+            name: item.name,
+            quantity: item.quantity,
+            unit: item.unit
+        };
+    });
 
     console.log('Items to display:', itemsToDisplay);
 
@@ -1290,7 +1222,7 @@ function displayTestResults(results, searchRadius) {
                 <th>Store</th>
                 <th>Distance</th>
                 ${itemsToDisplay.map(item => 
-                    `<th>${formatItemForDisplay(item)}</th>`
+                    `<th>${formatItemForDisplay(item.name)} (${item.quantity} ${item.unit})</th>`
                 ).join('')}
                 <th>Total</th>
             </tr>
@@ -1299,12 +1231,15 @@ function displayTestResults(results, searchRadius) {
                     <td>${store.name}</td>
                     <td>${store.distance.toFixed(1)} ${store.distance === 1 ? 'mile' : 'miles'}</td>
                     ${itemsToDisplay.map(item => {
-                        const price = store.costs[item];
+                        const itemString = JSON.stringify({
+                            name: item.name,
+                            quantity: item.quantity,
+                            unit: item.unit
+                        });
+                        const price = store.costs[itemString];
                         const cellClass = price === null ? 'missing-item' : '';
                         if (price !== null && price.price !== undefined) {
                             return `<td class="${cellClass}">$${price.price.toFixed(2)}</td>`;
-                        } else if (price !== null) {
-                            return `<td class="${cellClass}">$${price.toFixed(2)}</td>`;
                         }
                         return `<td class="${cellClass}">N/A</td>`;
                     }).join('')}
